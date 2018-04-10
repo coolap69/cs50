@@ -32,7 +32,17 @@ int main(int argc, string argv[])
     // Loop through plaintext adding key to each character
     for (int i = 0; i < strlen(plaintext); i++)
     {
-        printf("%c", plaintext[i] + key);
+
+        // Preserve case
+        if (isalpha(plaintext[i]))
+        {
+            if (toupper(plaintext[i]))
+            printf("%c", plaintext[i] + key);
+        }
+        else
+        {
+            printf("%c", plaintext[i] + key);
+        }
     }
     printf("\n");
 
