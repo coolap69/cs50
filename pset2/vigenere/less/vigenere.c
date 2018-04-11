@@ -7,6 +7,8 @@
 int main(int argc, string argv[])
 {
     int keyInt;
+    int keysUpper[100];
+    int keysLower[100];
     string key;
     string plaintext;
 
@@ -36,7 +38,34 @@ int main(int argc, string argv[])
     }
 
     keyInt = atoi(key);
-    printf("%d\n", keyInt);
+    // printf("%d\n", keyInt);
+
+    // Get Alphabet Index of key
+    // Going through these loops 3 times
+    for (int j = 0; j < strlen(key); j++)
+    {
+        if (isupper(key[j]))
+        {
+            int keyAlphaIndexUpper = key[j] - 65;
+            for (int k = 0; k < strlen(key); k++)
+            {
+                keysUpper[k] = keyAlphaIndexUpper;
+                printf("keysUpper[%i] = %i\n", k, keyAlphaIndexUpper);
+            }
+            // printf("%i\n", keyAlphaIndexUpper);
+        }
+        else if (islower(key[j]))
+        {
+            int keyAlphaIndexLower = key[j] - 97;
+            for (int k = 0; k < strlen(key); k++)
+            {
+                keysLower[k] = keyAlphaIndexLower;
+                printf("keysLower[%i] = %i\n", k, keyAlphaIndexLower);
+            }
+            // printf("%i\n", keyAlphaIndexLower);
+        }
+
+    }
 
     // Get plaintext from user
     plaintext = get_string("plaintext: ");
@@ -56,9 +85,9 @@ int main(int argc, string argv[])
             if (isupper(plaintext[i]))
             {
                 // Convert uppercase character from ASCII to Alphabetical Index
-                int alphaIndexUpper = plaintext[i] + keyInt - 65;
+                // int alphaIndexUpper = plaintext[i] + keyInt - 65;
                 // Convert from Alpha to Cipher
-                int cipheredUpper = alphaIndexUpper % 26 + 65;
+                int cipheredUpper = plaintext[i] + keysUpper[0];
                 //Print character
                 printf("%c", cipheredUpper);
 
@@ -67,9 +96,9 @@ int main(int argc, string argv[])
             else
             {
                 // Convert lowercase character from ASCII to Alphabetical Index
-                int alphaIndexLower = plaintext[i] + keyInt - 97;
+                // int alphaIndexLower = plaintext[i] + keyInt - 97;
                 // Convert from Alpha to Cipher
-                int cipheredLower = alphaIndexLower % 26 + 97;
+                int cipheredLower = plaintext[i] + keysLower[0];
                 // Print character
                 printf("%c", cipheredLower);
             }
