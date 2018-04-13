@@ -6,9 +6,6 @@
 
 int main(int argc, string argv[])
 {
-    int keyInt;
-    int keysUpper[100];
-    int keysLower[100];
     string key;
     string plaintext;
 
@@ -24,96 +21,102 @@ int main(int argc, string argv[])
         {
             if (!isalpha(key[i]))
             {
-                printf("Error: key must be all Alpha characters.");
+                printf("Error: key must be all Alpha characters.\n");
+                return 1;
             }
 
         }
-        printf("%s\n", key);
     }
     else
     {
         // Return error message
-        printf("Error: Must enter one word after ./caesar.\n");
+        printf("Error: Must enter one word after ./test.\n");
         return 1;
-    }
-
-    keyInt = atoi(key);
-    // printf("%d\n", keyInt);
-
-    // Get Alphabet Index of key
-    // Going through these loops 3 times
-    for (int j = 0; j < strlen(key); j++)
-    {
-        if (isupper(key[j]))
-        {
-            int keyAlphaIndexUpper = key[j] - 65;
-            for (int k = 0; k < strlen(key); k++)
-            {
-                keysUpper[k] = keyAlphaIndexUpper;
-                printf("keysUpper[%i] = %i\n", k, keyAlphaIndexUpper);
-            }
-            // printf("%i\n", keyAlphaIndexUpper);
-        }
-        else if (islower(key[j]))
-        {
-            int keyAlphaIndexLower = key[j] - 97;
-            for (int k = 0; k < strlen(key); k++)
-            {
-                keysLower[k] = keyAlphaIndexLower;
-                printf("keysLower[%i] = %i\n", k, keyAlphaIndexLower);
-            }
-            // printf("%i\n", keyAlphaIndexLower);
-        }
-
     }
 
     // Get plaintext from user
     plaintext = get_string("plaintext: ");
 
-    // Cipheded text will appear after "ciphertext: "
+    // Vigenere Cipher equation is Ci = (Pi + Kj) % 26
+    // Ci : ith letter of ciphertext
+    // Pi : ith letter of plaintext
+    // Kj : jth letter of key
 
+    // Output of ciphertext
     printf("ciphertext: ");
 
-    // Loop through plaintext adding key to each character
-    for (int i = 0; i < strlen(plaintext); i++)
+    for (int i = 0, keyIndexValue = 0; i <= strlen(plaintext); i++)
     {
-
-        // Check to see if character is Alpha or not
         if (isalpha(plaintext[i]))
         {
-            // If Alpha, check to see if character is uppercase
-            if (isupper(plaintext[i]))
+            if (isupper(plaintext[i]) && isupper(key[keyIndexValue]))
             {
-                // Convert uppercase character from ASCII to Alphabetical Index
-                // int alphaIndexUpper = plaintext[i] + keyInt - 65;
-                // Convert from Alpha to Cipher
-                int cipheredUpper = plaintext[i] + keysUpper[0];
-                //Print character
-                printf("%c", cipheredUpper);
+                int cipherUpper = (((plaintext[i] - 'A') + (key[keyIndexValue] - 'A')) % 26) + 'A';
+                printf("%c", cipherUpper);
+                if (keyIndexValue > strlen(plaintext))
+                {
+                    keyIndexValue = 0;
+
+                }
+                else
+                {
+                    keyIndexValue++;
+
+                }
 
             }
-            // If Alpha and not uppercase, character is lowercase
-            else
+            else if (isupper(plaintext[i]) && islower(key[keyIndexValue]))
             {
-                // Convert lowercase character from ASCII to Alphabetical Index
-                // int alphaIndexLower = plaintext[i] + keyInt - 97;
-                // Convert from Alpha to Cipher
-                int cipheredLower = plaintext[i] + keysLower[0];
-                // Print character
-                printf("%c", cipheredLower);
+                int cipherUpper = (((plaintext[i] - 'A') + (key[keyIndexValue] - 'a')) % 26) + 'A';
+                printf("%c", cipherUpper);
+                if (keyIndexValue > strlen(plaintext))
+                {
+                    keyIndexValue = 0;
+
+                }
+                else
+                {
+                    keyIndexValue++;
+
+                }
+
             }
-        }
-        // If not an Alpha character, no need to convert
-        else
-        {
-            // Print character
-            printf("%c", plaintext[i]);
+            else if (islower(plaintext[i]) && islower(key[keyIndexValue]))
+            {
+                int cipherLower = (((plaintext[i] - 'a') + (key[keyIndexValue] - 'a')) % 26) + 'a';
+                printf("%c", cipherLower);
+                if (keyIndexValue > strlen(plaintext))
+                {
+                    keyIndexValue = 0;
+
+                }
+                else
+                {
+                    keyIndexValue++;
+
+                }
+
+            }
+            else if (islower(plaintext[i]) && isupper(key[keyIndexValue]))
+            {
+                int cipherLower = (((plaintext[i] - 'a') + (key[keyIndexValue] - 'A')) % 26) + 'a';
+                printf("%c", cipherLower);
+                if (keyIndexValue > strlen(plaintext))
+                {
+                    keyIndexValue = 0;
+
+                }
+                else
+                {
+                    keyIndexValue++;
+                    // break;
+
+                }
+
+            }
+
         }
 
     }
-    // Print new line after printing out all text
     printf("\n");
-
-    // Program ran successfully
-    return 0;
 }
