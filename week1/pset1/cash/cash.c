@@ -45,3 +45,7 @@ int main(void)
     }
     printf("%i\n", coin);
 }
+
+// This code is very succinct -- the walkthrough used modulo which this assignment does not, but the program works per specifications
+// Data validation works perfectly, as the program does not accept negative numbers;
+// More descriptive variable names could be used for each coin

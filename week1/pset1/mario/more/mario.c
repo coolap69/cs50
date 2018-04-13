@@ -54,3 +54,7 @@ int main(void)
 
     return 0;
 }
+
+//good use of comments - code is very readable and logic is easy to follow
+//data validation in place - program does not accept negative values or values over 23
+//well done

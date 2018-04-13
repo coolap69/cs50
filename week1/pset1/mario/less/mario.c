@@ -43,3 +43,7 @@ int main(void)
 
     return 0;
 }
+
+//good use of comments for explaining what lines of code are doing in the program
+//data validation in place - program only accepts input ranging from 0 to 23, inclusive
+//program is very readable and easy to follow the logic

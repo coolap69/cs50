@@ -20,3 +20,7 @@ int main(void)
     printf("Minutes: %i\n", minutes);
     printf("Bottles: %i\n", bottles);
 }
+
+//Good use of comments and variable names for colleagues or novices reading your code
+//Data validation in place, does not accept negative values
+//Enhanced code could also accept floating positive whole numbers
