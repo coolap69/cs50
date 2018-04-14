@@ -16,7 +16,7 @@ int main(int argc, string argv[])
     {
         key = argv[1];
 
-        // Check each character in the string to see is it is an Alpha character
+        // Check each character in the string to see is it is an Alpha character, if not print error message
         for (int i = 0; i < strlen(key); i++)
         {
             if (!isalpha(key[i]))
@@ -45,15 +45,24 @@ int main(int argc, string argv[])
     // Output of ciphertext
     printf("ciphertext: ");
 
-    for (int i = 0, keyIndexValue = 0; i <= strlen(plaintext); i++)
+    // Loop through plaintext
+    for (int i = 0, keyIndexValue = 0, plainTextLength = strlen(plaintext); i < plainTextLength; i++)
     {
+        // check to see if plaintext character is Alpha
         if (isalpha(plaintext[i]))
         {
+            // check to see if plaintext character is uppercase and key character is uppercase
             if (isupper(plaintext[i]) && isupper(key[keyIndexValue]))
             {
+                // convert character from ascii to alphabetical index and back to ascii
                 int cipherUpper = (((plaintext[i] - 'A') + (key[keyIndexValue] - 'A')) % 26) + 'A';
+
+                // print ciphered character
                 printf("%c", cipherUpper);
-                if (keyIndexValue > strlen(plaintext))
+
+                // increment key index value to continue to next character in key,
+                // if key index value is greater than the length, reset back to 0
+                if (keyIndexValue > strlen(key) - 2)
                 {
                     keyIndexValue = 0;
 
@@ -65,11 +74,18 @@ int main(int argc, string argv[])
                 }
 
             }
+            // check to see if plaintext character is uppercase and key character is lowercase
             else if (isupper(plaintext[i]) && islower(key[keyIndexValue]))
             {
+                // convert character from ascii to alphabetical index and back to ascii
                 int cipherUpper = (((plaintext[i] - 'A') + (key[keyIndexValue] - 'a')) % 26) + 'A';
+
+                // print ciphered character
                 printf("%c", cipherUpper);
-                if (keyIndexValue > strlen(plaintext))
+
+                // increment key index value to continue to next character in key,
+                // if key index value is greater than the length, reset back to 0
+                if (keyIndexValue > strlen(key) - 2)
                 {
                     keyIndexValue = 0;
 
@@ -81,11 +97,18 @@ int main(int argc, string argv[])
                 }
 
             }
+            // check to see if plaintext character is lowercase and key character is lowercase
             else if (islower(plaintext[i]) && islower(key[keyIndexValue]))
             {
+                // convert character from ascii to alphabetical index and back to ascii
                 int cipherLower = (((plaintext[i] - 'a') + (key[keyIndexValue] - 'a')) % 26) + 'a';
+
+                // print ciphered character
                 printf("%c", cipherLower);
-                if (keyIndexValue > strlen(plaintext))
+
+                // increment key index value to continue to next character in key,
+                // if key index value is greater than the length, reset back to 0
+                if (keyIndexValue > strlen(key) - 2)
                 {
                     keyIndexValue = 0;
 
@@ -97,11 +120,18 @@ int main(int argc, string argv[])
                 }
 
             }
+            // check to see if plaintext character is lowercase and key character is uppercase
             else if (islower(plaintext[i]) && isupper(key[keyIndexValue]))
             {
+                // convert character from ascii to alphabetical index and back to ascii
                 int cipherLower = (((plaintext[i] - 'a') + (key[keyIndexValue] - 'A')) % 26) + 'a';
+
+                // print ciphered character
                 printf("%c", cipherLower);
-                if (keyIndexValue > strlen(plaintext))
+
+                // increment key index value to continue to next character in key,
+                // if key index value is greater than the length, reset back to 0
+                if (keyIndexValue > strlen(key) - 2)
                 {
                     keyIndexValue = 0;
 
@@ -109,14 +139,19 @@ int main(int argc, string argv[])
                 else
                 {
                     keyIndexValue++;
-                    // break;
 
                 }
 
             }
 
         }
-
+        else
+        {
+            // eprintf("%i",plaintext[i]);
+            printf("%c", plaintext[i]);
+        }
     }
     printf("\n");
+
+    return 0;
 }
