@@ -7,7 +7,27 @@
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
 {
+    int denominator;
+    int eighths = 0;
+
+    denominator = fraction[2];
     // TODO
+    if (denominator == '8')
+    {
+        eighths = atoi(fraction[0]);
+    }
+    else if (denominator == '4')
+    {
+        eighths = (atoi(fraction[0])) * 2;
+    }
+    else if (denominator == '2')
+    {
+        eighths = (atoi(fraction[0])) * 4;
+    }
+    else if (denominator == '1')
+    {
+        eighths = (atoi(fraction[0])) * 8;
+    }
 }
 
 // Calculates frequency (in Hz) of a note
