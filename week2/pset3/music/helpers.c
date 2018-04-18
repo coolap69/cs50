@@ -20,4 +20,8 @@ int frequency(string note)
 bool is_rest(string s)
 {
     // TODO
+    if (s[0] == "\0")
+    return true;
+    else
+    return false;
 }
