@@ -1,3 +1,5 @@
+//reviewed by LP (2 suggestion)
+
 #include <cs50.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -14,6 +16,10 @@ int main(void)
     {
         if (s[i] == s[0])
         {
+
+        //**** LP= DON'T NEED islower. use toupper only ****
+
+
             // Check to see if letter is lowercase or uppercase
             if (islower(s[0]))
             {
@@ -51,3 +57,6 @@ int main(void)
     printf("\n");
 
 }
+
+//LP: I like how everything is label step by step. I don't mind that has more code that it needs to have.
+///you can probably combine some code together to have less code

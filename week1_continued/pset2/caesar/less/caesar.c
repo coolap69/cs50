@@ -1,3 +1,6 @@
+//reviewed by LP (4 suggestion)
+//**** app is not working correctly. Not passing check50****
+
 #include <cs50.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -37,10 +40,15 @@ int main(int argc, string argv[])
         // Check to see if character is Alpha or not
         if (isalpha(plaintext[i]))
         {
+        //***LP- what do you want to do if you have...** before you open another if. ****
+
             // If Alpha, check to see if character is uppercase
             if (isupper(plaintext[i]))
             {
                 // Convert uppercase character from ASCII to Alphabetical Index
+
+        //**** LP- adding 'A or 'a' computers will recognize as ASCII numbers ****
+
                 int alphaIndexUpper = plaintext[i] + key - 65;
                 // Convert from Alpha to Cipher
                 int cipheredUpper = alphaIndexUpper % 26 + 65;
@@ -73,3 +81,5 @@ int main(int argc, string argv[])
     // Program ran successfully
     return 0;
 }
+
+//**** LP- I believe that "else if" has a better structure to understand when your statements ends.****
